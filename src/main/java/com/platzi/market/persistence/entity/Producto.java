@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "productos")
 public class Producto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
@@ -19,14 +20,17 @@ public class Producto {
     private String codigoBarras;
 
     @Column(name = "precio_venta")
-    private  String precioVenta;
+    private Double precioVenta;
 
     @Column(name = "cantidad_stock")
     private Integer cantidadStock;
+
     private Boolean estado;
+
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
     private Categoria categoria;
+
     public Integer getIdProducto() {
         return idProducto;
     }
@@ -59,11 +63,11 @@ public class Producto {
         this.codigoBarras = codigoBarras;
     }
 
-    public String getPrecioVenta() {
+    public Double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(String precioVenta) {
+    public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
@@ -81,5 +85,13 @@ public class Producto {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

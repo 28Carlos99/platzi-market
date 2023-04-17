@@ -11,35 +11,40 @@ public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_compra")
-    private Integer IdCompra;
+    private Integer idCompra;
+
     @Column(name = "id_cliente")
-    private String IdCliente;
+    private String idCliente;
+
     private LocalDateTime fecha;
+
     @Column(name = "medio_pago")
     private String medioPago;
+
     private String comentario;
-    private Boolean estado;
+    private String estado;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "producto")
-    private List<Producto> productos;
+    private List<ComprasProducto> productos;
+
     public Integer getIdCompra() {
-        return IdCompra;
+        return idCompra;
     }
 
     public void setIdCompra(Integer idCompra) {
-        IdCompra = idCompra;
+        this.idCompra = idCompra;
     }
 
     public String getIdCliente() {
-        return IdCliente;
+        return idCliente;
     }
 
     public void setIdCliente(String idCliente) {
-        IdCliente = idCliente;
+        this.idCliente = idCliente;
     }
 
     public LocalDateTime getFecha() {
@@ -66,11 +71,27 @@ public class Compra {
         this.comentario = comentario;
     }
 
-    public Boolean getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<ComprasProducto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ComprasProducto> productos) {
+        this.productos = productos;
     }
 }

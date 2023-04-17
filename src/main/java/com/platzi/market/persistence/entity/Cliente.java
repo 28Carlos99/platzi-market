@@ -4,23 +4,27 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name="clientes")
 public class Cliente {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
     private String nombre;
-    private String apellido;
+    private String apellidos;
     private Long celular;
     private String direccion;
-    @Column(name = "corre_electronico")
-    private String correElectronico;
 
-    public Integer getId() {
+    @Column(name="correo_electronico")
+    private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -32,20 +36,18 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public Long getCelular() {
         return celular;
     }
 
-    @OneToMany(mappedBy = "client")
-    private List<Compra> compras;
     public void setCelular(Long celular) {
         this.celular = celular;
     }
@@ -58,11 +60,19 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public String getCorreElectronico() {
-        return correElectronico;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setCorreElectronico(String correElectronico) {
-        this.correElectronico = correElectronico;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
     }
 }
